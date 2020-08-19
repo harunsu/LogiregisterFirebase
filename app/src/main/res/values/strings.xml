@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">LogiregisterFirebase</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="back_to_registration">Back to registration</string>
+    <string name="register">REGISTER</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="select_photo">select photo</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="password_again">Password (again)</string>
+    <string name="home">Home</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="wallet">Wallet</string>
+    <string name="profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update">Update</string>
+    <string name="harun_su">Harun Su</string>
+</resources>

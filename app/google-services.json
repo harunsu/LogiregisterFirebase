@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "963672426680",
+    "firebase_url": "https://kotlinloginregister-ceaef.firebaseio.com",
+    "project_id": "kotlinloginregister-ceaef",
+    "storage_bucket": "kotlinloginregister-ceaef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963672426680:android:cca0041a1ffa28fab90c4d",
+        "android_client_info": {
+          "package_name": "com.example.logiregisterfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963672426680-oeevbiqg8frmlh8gv9l0eba654r19ak3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZZw5ZtcybJ89YJ5UTns3JlJfjk14mvyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963672426680-oeevbiqg8frmlh8gv9l0eba654r19ak3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
