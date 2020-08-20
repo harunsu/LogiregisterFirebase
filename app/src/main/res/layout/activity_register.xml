@@ -9,7 +9,7 @@
 
 
     <EditText
-        android:id="@+id/name_register_editText"
+        android:id="@+id/name_surname_register_editText"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
@@ -38,9 +38,9 @@
         android:inputType="textEmailAddress"
         android:paddingStart="20dp"
         android:paddingEnd="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/name_register_editText"
-        app:layout_constraintStart_toStartOf="@+id/name_register_editText"
-        app:layout_constraintTop_toBottomOf="@+id/name_register_editText"
+        app:layout_constraintEnd_toEndOf="@+id/name_surname_register_editText"
+        app:layout_constraintStart_toStartOf="@+id/name_surname_register_editText"
+        app:layout_constraintTop_toBottomOf="@+id/name_surname_register_editText"
         android:autofillHints="@string/email" />
 
     <EditText
@@ -110,8 +110,8 @@
         android:background="@drawable/rounded_select_photo_button"
         android:text="@string/select_photo"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/name_register_editText"
-        app:layout_constraintEnd_toEndOf="@+id/name_register_editText"
-        app:layout_constraintStart_toStartOf="@+id/name_register_editText"
+        app:layout_constraintBottom_toTopOf="@+id/name_surname_register_editText"
+        app:layout_constraintEnd_toEndOf="@+id/name_surname_register_editText"
+        app:layout_constraintStart_toStartOf="@+id/name_surname_register_editText"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,18 +28,19 @@
             tools:layout_editor_absoluteX="142dp"
             tools:layout_editor_absoluteY="58dp" />
 
-        <TextView
-            android:id="@+id/textView5"
+        <EditText
+            android:id="@+id/name_surname_update_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/ic_profile_img"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
+            android:autofillHints="@string/name"
             android:layout_marginStart="99dp"
+            android:inputType="textEmailAddress"
             android:layout_marginEnd="93dp"
             android:layout_marginBottom="-48dp"
-            android:text="@string/harun_su"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -54,7 +55,8 @@
         android:autofillHints="@string/email"
         android:background="@drawable/rounded_register_login_edittext"
         android:ems="10"
-        android:hint="@string/email"
+        android:enabled="true"
+        android:text="@string/email"
         android:inputType="textEmailAddress"
         android:paddingStart="20dp"
         android:paddingEnd="0dp"

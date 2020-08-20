@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import com.example.logiregisterfirebase.user.LoginActivity
+import com.example.logiregisterfirebase.user.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -24,11 +26,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-
         profile_update_button.setOnClickListener{
             performRegister()
         }
-
 
         already_have_account_textView.setOnClickListener{
             Log.d("RegisterActivity", "Try to show login activity :" )
@@ -67,12 +67,12 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun performRegister(){
 
-        val name = name_register_editText.text.toString()
+        val nameSurname = name_surname_register_editText.text.toString()
         val email = email_register_editText.text.toString()
         val password = password_register_editText.text.toString()
         val password2 = password2_register_editText.text.toString()
 
-        if (name.isEmpty() || name.length < 3) {
+        if (nameSurname.isEmpty() || nameSurname.length < 3) {
             Toast.makeText(this, "Please enter the name at least 3 characters", Toast.LENGTH_SHORT)
                 .show()
             return
@@ -131,7 +131,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun saveUserToFirebaseDatabase(profileImageUrl:String){
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val user = User(uid, name_register_editText.text.toString(), profileImageUrl)
+        val user = User(uid, email_register_editText.text.toString(), name_surname_register_editText.text.toString(),password_register_editText.text.toString(), profileImageUrl)
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d(TAG, "Finally we saved the user to Firebase Database")
@@ -149,4 +149,3 @@ class RegisterActivity : AppCompatActivity() {
 
 }
 
-class User(val uid: String, val username: String, val profileImageUrl: String)
