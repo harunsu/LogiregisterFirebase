@@ -3,7 +3,8 @@ package com.example.logiregisterfirebase.user
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import com.example.logiregisterfirebase.MainActivity
+import android.util.Log
+import com.example.logiregisterfirebase.ui.MainActivity
 
 class SessionManager {
 
@@ -32,19 +33,23 @@ class SessionManager {
     fun createLoginSession(user:User){
         editor.putBoolean(isLoggedKey,true)
         editor.putString(uidKey,user.uid)
+        Log.d("Seesionmqnqger", "Successfully logged in NAME : ${user.name_surname}")
+
         editor.putString(nameSurnameKey,user.name_surname)
         editor.putString(emailKey,user.email)
         editor.putString(passwordKey,user.password)
         editor.putString(profileImgUrlKey,user.profileImageUrl)
 
         editor.commit()
-
         editor.apply()
+
+        Log.d("Seesionmqnqger", "Successfully logged in NAME : ${preference.getString(nameSurnameKey,"")}")
+
     }
 
     fun checkLogin(){
         if(!this.isLoggedIn()){
-            var intent:Intent = Intent(con,MainActivity::class.java)
+            var intent:Intent = Intent(con, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             con.startActivity(intent)
@@ -53,23 +58,20 @@ class SessionManager {
 
     fun getUserDetails(): User{
         var user = User()
-        preference.getString(uidKey,"")
-        preference.getString(nameSurnameKey,"")
-        preference.getString(emailKey,"")
-        preference.getString(passwordKey,"")
-        preference.getString(profileImgUrlKey,"")
+        user.uid=preference.getString(uidKey,"")!!
+        user.name_surname=preference.getString(nameSurnameKey,"")!!
+        user.email=preference.getString(emailKey,"")!!
+        user.password=preference.getString(passwordKey,"")!!
+        user.profileImageUrl=preference.getString(profileImgUrlKey,"")!!
+
         return user
     }
 
-    fun LogouUser(){
-
+    fun LogOutUser():Boolean{
         editor.clear()
         editor.commit()
 
-        var intent: Intent = Intent(con,LoginActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        con.startActivity(intent)
+        return !isLoggedIn()
     }
     fun isLoggedIn(): Boolean {
         return preference.getBoolean(isLoggedKey, false)

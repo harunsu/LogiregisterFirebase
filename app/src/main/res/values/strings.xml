@@ -16,5 +16,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="update">Update</string>
-    <string name="harun_su">Harun Su</string>
+    <string name="label_email">Email</string>
+    <string name="name_surname">Harun Su</string>
+    <string name="search">Search</string>
+    <string name="top_gainers">Top Gainers</string>
+    <string name="top_losers">Top Losers</string>
+    <string name="price">Price</string>
+    <string name="pair">Pair</string>
+    <string name="_24h_change">24h Change</string>
 </resources>

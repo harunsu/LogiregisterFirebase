@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="?android:attr/colorEdgeEffect">
 
+
     <EditText
         android:id="@+id/email_login_editText"
         android:layout_width="0dp"
@@ -13,7 +14,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/rounded_register_login_edittext"
+        android:background="@drawable/et_enabled"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
@@ -30,7 +31,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_register_login_edittext"
+        android:background="@drawable/et_enabled"
         android:ems="10"
         android:paddingStart="20dp"
         android:paddingEnd="0dp"

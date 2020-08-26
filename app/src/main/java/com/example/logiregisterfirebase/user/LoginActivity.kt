@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.logiregisterfirebase.MainActivity
+import com.example.logiregisterfirebase.ui.MainActivity
 import com.example.logiregisterfirebase.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -13,7 +13,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_register.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,6 +23,16 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
+        session = SessionManager(applicationContext)
+
+        if (session.isLoggedIn()) {
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            applicationContext.startActivity(intent)
+            finish()
+        }
+
         login_button.setOnClickListener {
             performLogin()
         }
@@ -32,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
     }
+
 
     private fun performLogin() {
         val email = email_login_editText.text.toString()
@@ -42,7 +52,6 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -51,12 +60,10 @@ class LoginActivity : AppCompatActivity() {
 
                     val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
-
                     ref.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             val user = snapshot.getValue(User::class.java)
 
-                            session = SessionManager(applicationContext)
                             session.createLoginSession(user!!)
 
                             var intent = Intent(applicationContext, MainActivity::class.java)

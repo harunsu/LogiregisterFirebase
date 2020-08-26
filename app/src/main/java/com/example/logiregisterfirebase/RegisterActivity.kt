@@ -9,7 +9,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import com.example.logiregisterfirebase.ui.MainActivity
 import com.example.logiregisterfirebase.user.LoginActivity
+import com.example.logiregisterfirebase.user.SessionManager
 import com.example.logiregisterfirebase.user.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -22,6 +24,9 @@ class RegisterActivity : AppCompatActivity() {
     companion object {
         val TAG = "RegisterActivity"
     }
+
+    private val user=User()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -98,11 +103,11 @@ class RegisterActivity : AppCompatActivity() {
         Log.d("RegisterActivity", "Password is : $password")
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-            if(!it.isSuccessful) return@addOnCompleteListener
+            if(it.isSuccessful){
+                Log.d("Main", "Successfully created user uid : ${it.result?.user?.uid}")
+                uploadImageToFirebaseStorage()
+            }
 
-            //else if succesfull
-            Log.d("Main", "Successfully created user uid : ${it.result?.user?.uid}")
-            uploadImageToFirebaseStorage()
 
         }
             .addOnFailureListener{
@@ -135,6 +140,16 @@ class RegisterActivity : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d(TAG, "Finally we saved the user to Firebase Database")
+                Log.d(TAG, "user : $user")
+
+                val session = SessionManager(applicationContext)
+                session.createLoginSession(user)
+
+                var intent = Intent(applicationContext, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                applicationContext.startActivity(intent)
+                finish()
             }
             .addOnFailureListener {
                 Log.d(TAG, "Failed to set value to database: ${it.message}")
